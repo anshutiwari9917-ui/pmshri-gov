@@ -24,7 +24,7 @@ if (isset($_POST["submit"])) {
     // File upload handling
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
 
-        $uploadDir = "images/assets/announce/";
+        $uploadDir = "assets/images/announce/";
         $filename = $_FILES['image']['name'];
         $filesize = $_FILES['image']['size'];
         $filetype = mime_content_type($_FILES['image']['tmp_name']);
@@ -54,10 +54,11 @@ if (isset($_POST["submit"])) {
         $filesize = NULL;
         $filetype = NULL;
     }
+    
 
     // Prepared statement (secure)
-    $stmt = $conn->prepare("INSERT INTO announcement_db (annouce, header, image_name, image_size, image_type) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssds", $annoucenews, $heading, $newFileName, $filesize, $filetype);
+  $stmt = $conn->prepare("INSERT INTO announcement_db (annouce, header, image_name, image_size, image_type) VALUES (?, ?, ?, ?, ?)");
+$stmt->bind_param("sssis", $annoucenews, $heading, $newFileName, $filesize, $filetype);
 
     if ($stmt->execute()) {
         header("Location: annoucetable.php");
@@ -117,7 +118,6 @@ if (isset($_POST["submit"])) {
         <!-- start card body -->
                 <div class="card-body">
                   <div class="form-group ">
-                      <div class= "col-sm-12">
                   <div class="col-sm-6">
                     <label for="inputEmail3" class="col-sm-6 col-form-label">Announce Header </label>
                     <input type="text" name="header" class="form-control" id="text1" placeholder="Enter header....">
@@ -125,7 +125,6 @@ if (isset($_POST["submit"])) {
                   <div class="col-sm-6">
                     <label for="inputEmail3" class="col-sm-6 col-form-label">Announcement </label>
                     <input type="text" name="announcement" class="form-control" id="text2" placeholder="Enter annoucement....">
-                    </div>
                     </div>
                     <div class="row">
                           <div class="col-sm-12">
@@ -135,9 +134,9 @@ if (isset($_POST["submit"])) {
                         <input type="file" class="form-control" name="image" id="exampleInputFile">
                       </div>
                     </div>
-</div>                        
+                  </div>                        
                         
-</div>
+              </div>
                   </div>
                 </div>
                 <!-- end.card-body -->

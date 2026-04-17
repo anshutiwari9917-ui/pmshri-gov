@@ -1,5 +1,4 @@
 <?php
-session_start();
 include("conn.php");
 if(!empty($_SESSION["id"])){
   $id = $_SESSION["id"];

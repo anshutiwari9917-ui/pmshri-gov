@@ -1,4 +1,4 @@
-@charset "UTF-8";
+    @charset "UTF-8";
 /*------------------------------------------------------------------
 [Master Stylesheet]
 Theme Name:     Parador – Hotel Booking HTML5 Template
@@ -834,7 +834,7 @@ a.ui-button:active, .ui-button:active,
 }
 
 .wpo-breadcumb-area {
-  background: url(../images/page-title.jpg) no-repeat center top/cover;
+  background: url(../images/slid5.jpg) no-repeat center top/cover;
   min-height: 400px;
   position: relative;
   display: -webkit-box;
@@ -5831,7 +5831,7 @@ a.ui-button:active, .ui-button:active,
 /* 3.10 wpo-blog-section */
 .wpo-blog-section {
   padding-bottom: 90px;
-  background: #f3f8fc;
+  /*background: #f3f8fc;*/
 }
 
 @media (max-width: 767px) {
@@ -11672,7 +11672,7 @@ a.ui-button:active, .ui-button:active,
 }
 
 .announcement-item h3 {
-  font-size: 18px;
+  font-size: 17px;
   margin-bottom: 5px;
 }
 

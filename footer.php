@@ -7,8 +7,9 @@
                                 <div class="logo widget-title">
                                     <img src="assets/images/logo1.webp" alt="blog">
                                 </div>
-                                <p>Management consulting includes a broad range of activities, and the many firms and
-                                    their members often define these practices.</p>
+                                <p>पीएम श्री अटल उत्कृष्ट राजकीय इंटर कॉलेज, गुप्तकाशी एक प्रतिष्ठित शैक्षणिक संस्थान है, 
+जहाँ गुणवत्तापूर्ण शिक्षा के साथ विद्यार्थियों के सर्वांगीण विकास पर विशेष ध्यान दिया जाता है। 
+हमारा उद्देश्य छात्रों को ज्ञान, अनुशासन और संस्कारों से सशक्त बनाकर एक उज्ज्वल भविष्य की ओर अग्रसर करना है।</p>
                                 <ul>
                                     <li>
                                         <a href="#">

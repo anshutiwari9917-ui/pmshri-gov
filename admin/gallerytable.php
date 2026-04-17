@@ -72,7 +72,7 @@ if (!empty($_SESSION["id"])) {
                           $fileName = $image['imagename'];
                           $filetype = $image['imagetype'];
                           $filesize = $image['imagesize']; 
-                          $uploadPath = "images/". $fileName;
+                          $uploadPath = "images/gallery/". $fileName;
                       ?>
                     <tr>
                         <td><img src="<?php echo $uploadPath;?>" alt="<?php echo $fileName;?>" style='width: 100px; height: auto;'></td>

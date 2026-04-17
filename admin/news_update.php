@@ -2,36 +2,51 @@
 include("conn.php");
 
 if (isset($_GET['id'])) {
-    $id = intval($_GET['id']); // Sanitize input
+    $id = intval($_GET['id']);
     $result = mysqli_query($conn, "SELECT * FROM news_db WHERE id = $id");
     $image = mysqli_fetch_assoc($result);
 }
 
-if (isset($_POST['update']) && isset($_FILES['filename'])) {
-    $uploadDir = 'images/'; // Directory to store uploaded files
+if (isset($_POST['update'])) {
+
+    $id = intval($_POST['id']);
     $newshead = $_POST['newshead'];
     $news = $_POST['news'];
-    $fileTmp = $_FILES['filename']['tmp_name'];
-    $fileName = basename($_FILES['filename']['name']);
-    $fileType = $_FILES['filename']['type'];
-    $fileSize = $_FILES['filename']['size'];
-    $uploadPath = $uploadDir . $fileName;
 
-    if (move_uploaded_file($fileTmp, $uploadPath)) {
-        // Update the database record
-        $stmt = $conn->prepare("UPDATE news_db SET news_head = ?, news = ?, image_name = ?, image_type = ?, image_size = ? WHERE id = ?");
-        $stmt->bind_param("sssi",$newshead,$news, $fileName, $fileType, $fileSize, $id);
+    $fileName = $_FILES['filename']['name'] ?? '';
+    $fileTmp = $_FILES['filename']['tmp_name'] ?? '';
+    $fileType = $_FILES['filename']['type'] ?? '';
+    $fileSize = $_FILES['filename']['size'] ?? '';
 
-        if ($stmt->execute()) {
-            echo "<script>alert('Record updated successfully'); window.location.href='slider.php';</script>";
-        } else {
-            echo "<script>alert('Error updating record: " . $stmt->error . "');</script>";
-        }
+    // If image uploaded
+    if (!empty($fileName)) {
 
-        $stmt->close();
+        $uploadDir = 'images/';
+        $uploadPath = $uploadDir . basename($fileName);
+        move_uploaded_file($fileTmp, $uploadPath);
+
+        $stmt = $conn->prepare("UPDATE news_db 
+            SET news_head=?, news=?, image_name=?, image_type=?, image_size=? 
+            WHERE id=?");
+
+        $stmt->bind_param("ssssii", $newshead, $news, $fileName, $fileType, $fileSize, $id);
+
     } else {
-        echo "<script>alert('File upload failed');</script>";
+        // Only update text
+        $stmt = $conn->prepare("UPDATE news_db 
+            SET news_head=?, news=? 
+            WHERE id=?");
+
+        $stmt->bind_param("ssi", $newshead, $news, $id);
     }
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Updated'); window.location.href='news_table.php';</script>";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
 }
 ?>
 
@@ -66,18 +81,21 @@ if (isset($_POST['update']) && isset($_FILES['filename'])) {
                 <h3 class="card-title">Update</h3>
               </div>
               <form method="POST" action="" enctype="multipart/form-data">
+                  
               <div class="card-body">
+                  
+<input type="hidden" name="id" value="<?= $image['id']; ?>">
               <div class="form-group">
                   <label for="filename">Filename</label>
                   <input type="file" name="filename" value="<?= htmlspecialchars($image['image_name']); ?>" class="form-control" required>
                 </div>
                 <div class="form-group">
                   <label for="newshead">News Head</label>
-                  <input type="text" class="form-control" value="<?= htmlspecialchars($image['news_head']); ?>" disabled>
+                  <input type="text" name="newshead" class="form-control" value="<?= htmlspecialchars($image['news_head']); ?>" required>
                 </div>
                 <div class="form-group">
                   <label for="news">News</label>
-                  <input type="text" class="form-control" value="<?= htmlspecialchars($image['news']); ?>" disabled>
+                  <input type="text" name="news" class="form-control" value="<?= htmlspecialchars($image['news']); ?>" required>
                 </div>
                 <div class="form-group">
                   <label for="filetype">Current Filetype</label>

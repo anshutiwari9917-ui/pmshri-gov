@@ -59,6 +59,7 @@ if (!empty($_SESSION["id"])) {
                     <tr>
                       <th>News Heading</th>
                       <th>Event News</th>
+                        <th>Image</th>
                       <th>Action</th>
                       <th>Status</th>
                     </tr>
@@ -71,10 +72,12 @@ if (!empty($_SESSION["id"])) {
                           $id = $event['id']; // Use correct id for update and delete links
                           $events = $event['event'];
                           $heading = $event['header'];
+                            $image = $event['image_name'];
                       ?>
                     <tr>
                     <td><?php echo $heading;?></td>
                         <td><?php echo $events;?></td>
+                        <td><?php echo $image;?></td>
                         <td>
                           <a href='update_event.php?id=<?php echo $id;?>' class='btn btn-primary btn-sm'>Update</a>
                           <a href='delete_event.php?id=<?php echo $id;?>' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this file?\");'>Delete</a>

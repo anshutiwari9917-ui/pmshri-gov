@@ -17,7 +17,7 @@ if (isset($_POST["submit"]))
     $filesize = $_FILES['image']['size'];
     $filetype = $_FILES['image']['type'];
     $filentmp = $_FILES['image']['tmp_name'];
-    move_uploaded_file($filentmp,"images/".$filename);
+    move_uploaded_file($filentmp,"images/gallery/".$filename);
 
     $query = "INSERT INTO gallery_db (imagename,imagetype,imagesize) VALUES ('$filename','$filesize','$filetype')";
     $data = mysqli_query($conn,$query);

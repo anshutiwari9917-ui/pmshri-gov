@@ -9,7 +9,7 @@ include("databse.php");
 <div class="maintable">
 
 
-<div class="col-md-12" style="padding-top:20px;">
+<div class="col-md-12" style="padding-top:2%;">
 <div class="thumbnail">
 <div style="padding-left:5px">
 

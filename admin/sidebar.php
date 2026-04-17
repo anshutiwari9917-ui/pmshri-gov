@@ -4,7 +4,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        <img src="images/logo.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
         <a href="dashboard.php" class="d-block">Admin</a>
@@ -14,12 +14,12 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item">
-          <a href="index.php" class="nav-link <?= $currentPage == 'index.php' ? 'active' : '' ?>">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>Dashboard</p>
-          </a>
-        </li>
+        <!--<li class="nav-item">-->
+          <!--<a href="index.php" class="nav-link <?= $currentPage == 'index.php' ? 'active' : '' ?>">-->
+        <!--    <i class="nav-icon fas fa-tachometer-alt"></i>-->
+        <!--    <p>Dashboard</p>-->
+        <!--  </a>-->
+        <!--</li>-->
         <li class="nav-item">
           <a href="gallerytable.php" class="nav-link <?= $currentPage == 'gallery.php' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-table"></i>
@@ -48,6 +48,12 @@
           <a href="eventable.php" class="nav-link <?= $currentPage == 'eventable.php' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-table"></i>
             <p>Events</p>
+          </a>
+        </li>
+                <li class="nav-item">
+          <a href="contactable.php" class="nav-link <?= $currentPage == 'contactable.php' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-table"></i>
+            <p>Contact Query</p>
           </a>
         </li>
         <li class="nav-item">

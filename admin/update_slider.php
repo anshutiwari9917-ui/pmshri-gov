@@ -21,7 +21,7 @@ if (isset($_POST['update']) && isset($_FILES['filename'])) {
         $stmt->bind_param("sssi", $fileName, $fileType, $fileSize, $id);
 
         if ($stmt->execute()) {
-            echo "<script>alert('Record updated successfully'); window.location.href='slider.php';</script>";
+            echo "<script>alert('Record updated successfully'); window.location.href='table.php';</script>";
         } else {
             echo "<script>alert('Error updating record: " . $stmt->error . "');</script>";
         }

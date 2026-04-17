@@ -29,7 +29,7 @@ include("databse.php");
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="room-item">
                                 <div class="room-img">
-                                    <img src="assets/images/<?php echo $image['imagename']; ?>" alt="image">
+                                    <img src="../admin/images/gallery/<?php echo $image['imagename']; ?>" alt="image">
                                 </div>
                             </div>
                         </div>

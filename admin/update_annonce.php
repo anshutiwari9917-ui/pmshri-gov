@@ -1,43 +1,81 @@
 <?php
 include("conn.php");
+session_start();
 
-// Ensure user is authenticated
 if (!empty($_SESSION["id"])) {
     $id = $_SESSION["id"];
     $result = mysqli_query($conn, "SELECT * FROM user_admin WHERE id = $id");
     $row = mysqli_fetch_assoc($result);
 } else {
     header("location:admin.php");
-    exit;
+    exit();
 }
 
-// Fetch existing announcement details for the provided ID
+/* FETCH DATA */
 if (isset($_GET['id'])) {
-    $announcement_id = intval($_GET['id']);
-    $query = "SELECT * FROM announcement_db WHERE id = $announcement_id";
-    $announcement_result = mysqli_query($conn, $query);
-
-    if ($announcement_result && mysqli_num_rows($announcement_result) > 0) {
-        $announcement_data = mysqli_fetch_assoc($announcement_result);
-    } else {
-        echo "<script>alert('Announcement not found!'); window.location.href='annoucetable.php';</script>";
-        exit;
-    }
+    $edit_id = intval($_GET['id']);
+    $res = mysqli_query($conn, "SELECT * FROM announcement_db WHERE id = $edit_id");
+    $announce = mysqli_fetch_assoc($res);
 } else {
-    header("location:annoucetable.php");
-    exit;
+    header("location: annoucetable.php");
+    exit();
 }
 
-// Update the announcement in the database
+/* UPDATE */
 if (isset($_POST["submit"])) {
-    $heading = mysqli_real_escape_string($conn, $_POST['header']);
-    $announcement_news = mysqli_real_escape_string($conn, $_POST['announcement']);
 
-    $update_query = "UPDATE announcement_db SET header = '$heading', annouce = '$announcement_news' WHERE id = $announcement_id";
-    if (mysqli_query($conn, $update_query)) {
-        echo "<script>alert('Announcement updated successfully!'); window.location.href='annoucetable.php';</script>";
+    $id = intval($_POST['id']);
+    $heading = trim($_POST['header']);
+    $annoucenews = trim($_POST['announcement']);
+
+    if (empty($heading) || empty($annoucenews)) {
+        die("All fields are required");
+    }
+
+    $uploadDir = "../assets/images/announce/";
+
+    // IMAGE UPDATE
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
+
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        $filename = $_FILES['image']['name'];
+        $filesize = $_FILES['image']['size'];
+        $filetype = mime_content_type($_FILES['image']['tmp_name']);
+        $tmp = $_FILES['image']['tmp_name'];
+
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        $newFileName = time() . "_" . uniqid() . "." . $ext;
+
+        if (move_uploaded_file($tmp, $uploadDir . $newFileName)) {
+
+            $stmt = $conn->prepare("UPDATE announcement_db 
+                SET annouce=?, header=?, image_name=?, image_size=?, image_type=? 
+                WHERE id=?");
+
+            $stmt->bind_param("sssisi", $annoucenews, $heading, $newFileName, $filesize, $filetype, $id);
+
+        } else {
+            die("File upload failed");
+        }
+
     } else {
-        echo "Error updating announcement: " . mysqli_error($conn);
+
+        // NO IMAGE UPDATE
+        $stmt = $conn->prepare("UPDATE announcement_db 
+            SET annouce=?, header=? 
+            WHERE id=?");
+
+        $stmt->bind_param("ssi", $annoucenews, $heading, $id);
+    }
+
+    if ($stmt->execute()) {
+        header("Location: annoucetable.php");
+        exit();
+    } else {
+        echo "Error: " . $stmt->error;
     }
 }
 ?>
@@ -84,18 +122,30 @@ if (isset($_POST["submit"])) {
               <div class="card-header">
                 <h3 class="card-title">Update Announcement</h3>
               </div>
-              <form class="form-horizontal" method="POST" action="">
+              <form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
                 <!-- Card Body -->
                 <div class="card-body">
+                    <input type="hidden" name="id" value="<?= $announce['id']; ?>">
                   <div class="form-group">
                     <label for="header">Announce Header</label>
-                    <input type="text" name="header" class="form-control" id="header" placeholder="Enter header..." value="<?= htmlspecialchars($announcement_data['header']); ?>" required>
+                    <input type="text" name="header" class="form-control" id="header" placeholder="Enter header..." value="<?= htmlspecialchars($announce['header']); ?>" required>
                   </div>
                   <div class="form-group">
                     <label for="announcement">Announcement</label>
-                    <input type="text" name="announcement" class="form-control" id="announcement" placeholder="Enter announcement..." value="<?= htmlspecialchars($announcement_data['annouce']); ?>" required>
+                    <input type="text" name="announcement" class="form-control" id="announcement" placeholder="Enter announcement..." value="<?= htmlspecialchars($announce['annouce']); ?>" required>
                   </div>
+                  
                 </div>
+                <div class="row">
+                          <div class="col-sm-12">
+                               <label for="exampleInputFile">Select Image</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="form-control" name="image" id="exampleInputFile">
+                      </div>
+                    </div>
+</div>                        
+</div>
                 <!-- /.card-body -->
 
                 <!-- Card Footer -->

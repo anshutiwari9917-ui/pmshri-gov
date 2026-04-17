@@ -26,18 +26,20 @@ include("databse.php");
         <div class="room-wrap">
             <div class="row justify-content-center align-items-center">
                 <!-- Principal Image -->
-                <div class="col-lg-3 col-md-6 col-12 text-center">
-                    <div class="room-item">
-                        <div class="room-img">
-                            <img src="assets/images/20240126_100133.jpg" alt="Principal Image" style="width:100%; height:50%; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
-                        </div>
-                        <h3 style="margin-top: 15px;">Mr. [Principal Name]</h3>
-                        <p style="font-style: italic;">Principal</p>
-                    </div>
-                </div>
+               <div class="col-lg-4 col-md-6 col-12 text-center">
+    <div class="principal-card">
+        <div class="principal-img">
+            <img src="assets/images/20240126_100133.jpg" alt="Principal Image">
+        </div>
+        <div class="principal-info">
+            <h3>Mr. Subodh Chandra Semwal</h3>
+            <!--<p>[Principal]</p>-->
+        </div>
+    </div>
+</div>
 
                 <!-- Principal Description -->
-                <div class="col-lg-9 col-md-12 col-12">
+                <div class="col-lg-8 col-md-12 col-12">
                     <div class="room-item">
                         <p style="text-align: justify; font-size: 16px; line-height: 1.8;">
                             Welcome to <strong>PM Shri Atal Utkrisht Government Inter College, Guptakashi, Rudraprayag</strong> – a beacon of learning and excellence nestled in the serene Himalayan region of Uttarakhand.
@@ -52,7 +54,7 @@ include("databse.php");
                             <br><br>
                             At <strong>PM Shri Atal Utkrisht GIC Guptakashi</strong>, we believe in empowering every child with knowledge, values, and the confidence to shape a better tomorrow. Together with parents and the community, we strive to shape the future—one student at a time.
                             <br><br>
-                            <strong>- Mr. [Principal Name]</strong>
+                            <strong>- Mr. Subodh Chandra Semwal</strong>
                         </p>
                     </div>
                 </div>
@@ -89,4 +91,40 @@ include("databse.php");
 
 <style>
  <?php include("style.css");?>
+ .principal-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.principal-card:hover {
+    transform: translateY(-5px);
+}
+
+.principal-img {
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.principal-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.principal-info h3 {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.principal-info p {
+    font-style: italic;
+    color: #777;
+    margin-bottom: 0;
+}
 </style>

@@ -10,17 +10,71 @@ else{
 }
 ?>
 <!-- annoce store in db -->
+
+
 <?php
-if (isset($_POST["submit"]))
-{
-    $events = $_POST['event'];
-    $heading = $_POST['header'];
+if (isset($_POST["submit"])) {
 
-    $query = "INSERT INTO event_db (event,header) VALUES ('$events','$heading')";
-    $data = mysqli_query($conn,$query);
-    header("location:eventable.php");
+    $events = trim($_POST['event']);
+    $heading = trim($_POST['header']);
+
+    if (empty($heading) || empty($events)) {
+        die("All fields are required");
+    }
+
+    $uploadDir = "../images/event/";
+
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+
+        $filename = $_FILES['image']['name'];
+        $filesize = $_FILES['image']['size'];
+        $filetype = mime_content_type($_FILES['image']['tmp_name']);
+        $filentmp = $_FILES['image']['tmp_name'];
+
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
+        $allowedExt = ['jpg','jpeg','png','webp'];
+
+        if (!in_array($filetype, $allowedTypes) || !in_array($ext, $allowedExt)) {
+            die("Invalid file type");
+        }
+
+        if ($filesize > 2 * 1024 * 1024) {
+            die("File too large");
+        }
+
+        $newFileName = uniqid("event_", true) . "." . $ext;
+
+        if (!move_uploaded_file($filentmp, $uploadDir . $newFileName)) {
+            die("File upload failed");
+        }
+
+    } else {
+        $newFileName = "";
+        $filesize = 0;
+        $filetype = "";
+    }
+
+    $stmt = $conn->prepare("INSERT INTO event_db (event, header, image_name, image_size, image_type) VALUES (?, ?, ?, ?, ?)");
+
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
+    }
+
+    $stmt->bind_param("sssis", $events, $heading, $newFileName, $filesize, $filetype);
+
+    if ($stmt->execute()) {
+        header("Location: eventable.php");
+        exit();
+    } else {
+        echo "Error: " . $stmt->error;
+    }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -80,8 +134,20 @@ if (isset($_POST["submit"]))
                     <label for="event" class="col-sm-2 col-form-label">Event News </label>
                     <input type="text" name="event" class="form-control" id="text1" placeholder="Enter Event....">
                     </div>
+                      <div class="row">
+                          <div class="col-sm-12">
+                               <label for="exampleInputFile">Select Image</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="form-control" name="image" id="exampleInputFile">
+                      </div>
+                    </div>
+</div>                        
+                        
+</div>
                   </div>
                 </div>
+                
                 <!-- end.card-body -->
                 <div class="card-footer text-center">
                   <button type="submit" name="submit" class="btn btn-info">Submit</button>

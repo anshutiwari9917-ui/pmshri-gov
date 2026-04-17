@@ -1,6 +1,5 @@
-
 <?php
-$conn = mysqli_connect("localhost", "root", "", "pmc_db");
+$conn = mysqli_connect("localhost", "root", "", "pmc");
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
