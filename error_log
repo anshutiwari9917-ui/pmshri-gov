@@ -1,0 +1,66 @@
+[28-Apr-2025 04:27:16 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '3,6,8' at line 1 in /home/uttaqszl/pmsaugicguptakashi.in/databse.php:27
+Stack trace:
+#0 /home/uttaqszl/pmsaugicguptakashi.in/databse.php(27): mysqli->query()
+#1 /home/uttaqszl/pmsaugicguptakashi.in/index.php(3): include('/home/uttaqszl/...')
+#2 {main}
+  thrown in /home/uttaqszl/pmsaugicguptakashi.in/databse.php on line 27
+[28-Apr-2025 04:33:00 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '3,6,8' at line 1 in /home/uttaqszl/pmsaugicguptakashi.in/databse.php:21
+Stack trace:
+#0 /home/uttaqszl/pmsaugicguptakashi.in/databse.php(21): mysqli->query()
+#1 /home/uttaqszl/pmsaugicguptakashi.in/index.php(3): include('/home/uttaqszl/...')
+#2 {main}
+  thrown in /home/uttaqszl/pmsaugicguptakashi.in/databse.php on line 21
+[28-Apr-2025 04:33:15 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '8' at line 1 in /home/uttaqszl/pmsaugicguptakashi.in/databse.php:21
+Stack trace:
+#0 /home/uttaqszl/pmsaugicguptakashi.in/databse.php(21): mysqli->query()
+#1 /home/uttaqszl/pmsaugicguptakashi.in/index.php(3): include('/home/uttaqszl/...')
+#2 {main}
+  thrown in /home/uttaqszl/pmsaugicguptakashi.in/databse.php on line 21
+[25-May-2025 08:04:38 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Too many connections in /home/uttaqszl/pmsaugicguptakashi.in/conn.php:2
+Stack trace:
+#0 /home/uttaqszl/pmsaugicguptakashi.in/conn.php(2): mysqli_connect()
+#1 /home/uttaqszl/pmsaugicguptakashi.in/index.php(2): include('/home/uttaqszl/...')
+#2 {main}
+  thrown in /home/uttaqszl/pmsaugicguptakashi.in/conn.php on line 2
+[01-Aug-2025 19:41:27 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Too many connections in /home/uttaqszl/pmsaugicguptakashi.in/conn.php:2
+Stack trace:
+#0 /home/uttaqszl/pmsaugicguptakashi.in/conn.php(2): mysqli_connect()
+#1 /home/uttaqszl/pmsaugicguptakashi.in/index.php(2): include('/home/uttaqszl/...')
+#2 {main}
+  thrown in /home/uttaqszl/pmsaugicguptakashi.in/conn.php on line 2
+[01-Aug-2025 21:55:32 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Too many connections in /home/uttaqszl/pmsaugicguptakashi.in/conn.php:2
+Stack trace:
+#0 /home/uttaqszl/pmsaugicguptakashi.in/conn.php(2): mysqli_connect()
+#1 /home/uttaqszl/pmsaugicguptakashi.in/index.php(2): include('/home/uttaqszl/...')
+#2 {main}
+  thrown in /home/uttaqszl/pmsaugicguptakashi.in/conn.php on line 2
+[15-Sep-2025 08:23:35 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: No such file or directory in /home/uttaqszl/pmsaugicguptakashi.in/conn.php:2
+Stack trace:
+#0 /home/uttaqszl/pmsaugicguptakashi.in/conn.php(2): mysqli_connect()
+#1 /home/uttaqszl/pmsaugicguptakashi.in/index.php(2): include('/home/uttaqszl/...')
+#2 {main}
+  thrown in /home/uttaqszl/pmsaugicguptakashi.in/conn.php on line 2
+[15-Sep-2025 08:23:36 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: No such file or directory in /home/uttaqszl/pmsaugicguptakashi.in/conn.php:2
+Stack trace:
+#0 /home/uttaqszl/pmsaugicguptakashi.in/conn.php(2): mysqli_connect()
+#1 /home/uttaqszl/pmsaugicguptakashi.in/index.php(2): include('/home/uttaqszl/...')
+#2 {main}
+  thrown in /home/uttaqszl/pmsaugicguptakashi.in/conn.php on line 2
+[15-Sep-2025 08:23:41 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: No such file or directory in /home/uttaqszl/pmsaugicguptakashi.in/conn.php:2
+Stack trace:
+#0 /home/uttaqszl/pmsaugicguptakashi.in/conn.php(2): mysqli_connect()
+#1 /home/uttaqszl/pmsaugicguptakashi.in/index.php(2): include('/home/uttaqszl/...')
+#2 {main}
+  thrown in /home/uttaqszl/pmsaugicguptakashi.in/conn.php on line 2
+[15-Sep-2025 08:23:46 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: No such file or directory in /home/uttaqszl/pmsaugicguptakashi.in/conn.php:2
+Stack trace:
+#0 /home/uttaqszl/pmsaugicguptakashi.in/conn.php(2): mysqli_connect()
+#1 /home/uttaqszl/pmsaugicguptakashi.in/index.php(2): include('/home/uttaqszl/...')
+#2 {main}
+  thrown in /home/uttaqszl/pmsaugicguptakashi.in/conn.php on line 2
+[19-Dec-2025 18:42:24 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Too many connections in /home/uttaqszl/pmsaugicguptakashi.in/conn.php:2
+Stack trace:
+#0 /home/uttaqszl/pmsaugicguptakashi.in/conn.php(2): mysqli_connect()
+#1 /home/uttaqszl/pmsaugicguptakashi.in/index.php(2): include('/home/uttaqszl/...')
+#2 {main}
+  thrown in /home/uttaqszl/pmsaugicguptakashi.in/conn.php on line 2
